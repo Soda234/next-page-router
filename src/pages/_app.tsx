@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const rotuer = useRouter();
@@ -9,6 +10,10 @@ export default function App({ Component, pageProps }: AppProps) {
   const onClickButton = () => {
     rotuer.push("/test");
   };
+
+  useEffect(() => {
+    rotuer.prefetch("/test"); // 프리패치가 안되는 경우에는 이런식으로 직접 프리패치를 시킬 수도 있다.
+  }, []);
 
   return (
     <div>
